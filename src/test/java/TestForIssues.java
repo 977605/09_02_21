@@ -6,7 +6,8 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class TestForIssues {
+public class TestForIssues extends TestBase {
+
     private static final String URL = "http://github.com";
     private static final String ISSUE_NUMBER = "#68";
     private static final String ISSUES = "Issues";
@@ -48,9 +49,9 @@ public class TestForIssues {
 
         $(withText("#60")).should(Condition.exist);
 
-        ElementsCollection resaulIssuesClosed  =  $$("div[aria-label='Issues'] a[aria-label*='Link']");
+        ElementsCollection resaultIssuesClosed  =  $$("div[aria-label='Issues'] a[aria-label*='Link']");
 
-        $(withText(resaulIssuesClosed.size()+" Closed")).should(Condition.exist);
+        $(withText(resaultIssuesClosed.size()+" Closed")).should(Condition.exist);
         $(withText("Listeners NamedBy")).should(Condition.exist);
     }
 }
