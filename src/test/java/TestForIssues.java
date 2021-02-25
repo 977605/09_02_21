@@ -49,9 +49,9 @@ public class TestForIssues extends TestBase {
 
         $(withText("#60")).should(Condition.exist);
 
-        ElementsCollection resaultIssuesClosed  =  $$("div[aria-label='Issues'] a[aria-label*='Link']");
+        ElementsCollection resaultIssuesClosed = $$("div[aria-label='Issues'] a[aria-label*='Link']");
 
-        $(withText(resaultIssuesClosed.size()+" Closed")).should(Condition.exist);
+        $(withText(resaultIssuesClosed.size() + " Closed")).should(Condition.exist);
         $(withText("Listeners NamedBy")).should(Condition.exist);
     }
 }
