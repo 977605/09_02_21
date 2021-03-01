@@ -5,6 +5,8 @@ import io.qameta.allure.Step;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.visible;
+
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -22,17 +24,14 @@ public class TestBase {
 
     @Step("Поиск репозитория")
     public void searchRepository(String repository) {
-        $("input[name='q']").click();
-        $("input[name='q']").sendKeys(repository);
-        $("input[name='q']").pressEnter();
+        $(".header-search-input").setValue(repository).submit();
     }
 
     @Step("Получаем результаты поиска репозитория")
     public void resultsOfSearchRepository() {
         ElementsCollection resaultSearch = $$(".repo-list > li");
         String results = (resaultSearch.size()) + " repository results";
-
-        $(withText(results)).should(Condition.exist);
+        $(withText(results)).should(visible);
     }
 
     @Step("Переходим в репозиторий")
@@ -50,14 +49,15 @@ public class TestBase {
         $("#js-issues-search").setValue("is:issue is:closed").pressEnter();
     }
 
-    @Step("Ищем Issue по номеру")
-    public void goToIssueByNumber(String issueNumber) {
-        $(withText(issueNumber)).should(Condition.exist);
+    @Step("Проверяем наличие Issue по номеру")
+    public void checkIssueByNumber(String issueNumber) {
+        $(withText(issueNumber)).should(visible);
     }
 
     @Step("Ищем Issue по названию в закрытых Issues")
     public void goToIssueByName(String issueName) {
-        $(withText(issueName)).should(Condition.exist);
+
+        $(withText(issueName)).should(visible);
     }
 
 }

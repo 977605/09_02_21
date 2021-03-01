@@ -1,4 +1,3 @@
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
@@ -7,6 +6,7 @@ import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -38,16 +38,14 @@ public class TestForIssuesLambdaSteps extends TestBase {
         });
 
         step("Поиск репозитория " + REPOSITORY, () -> {
-            $("input[name='q']").click();
-            $("input[name='q']").sendKeys(REPOSITORY);
-            $("input[name='q']").pressEnter();
+            $(".header-search-input").setValue(REPOSITORY).submit();
         });
 
         step("Получаем результаты поиска репозитория " + REPOSITORY, () -> {
             ElementsCollection resaultSearch = $$(".repo-list > li");
             String results = (resaultSearch.size()) + " repository results";
 
-            $(withText(results)).should(Condition.exist);
+            $(withText(results)).should(visible);
         });
 
         step("Переходим в репозиторий " + REPOSITORY, () -> {
@@ -59,7 +57,7 @@ public class TestForIssuesLambdaSteps extends TestBase {
         });
 
         step("Подтверждаем, что существует Issue с номером " + ISSUE_NUMBER, () -> {
-            $(withText(ISSUE_NUMBER)).should(Condition.exist);
+            $(withText(ISSUE_NUMBER)).should(visible);
         });
     }
 
@@ -80,16 +78,14 @@ public class TestForIssuesLambdaSteps extends TestBase {
         });
 
         step("Поиск репозитория " + REPOSITORY, () -> {
-            $("input[name='q']").click();
-            $("input[name='q']").sendKeys(REPOSITORY);
-            $("input[name='q']").pressEnter();
+            $(".header-search-input").setValue(REPOSITORY).submit();
         });
 
         step("Получаем результаты поиска репозитория " + REPOSITORY, () -> {
             ElementsCollection resaultSearch = $$(".repo-list > li");
             String results = (resaultSearch.size()) + " repository results";
 
-            $(withText(results)).should(Condition.exist);
+            $(withText(results)).should(visible);
         });
 
         step("Переходим в репозиторий " + REPOSITORY, () -> {
@@ -105,7 +101,7 @@ public class TestForIssuesLambdaSteps extends TestBase {
         });
 
         step("В закрытых Issues присутствует Issue с именем " + ISSUE_NAME, () -> {
-            $(withText("Listeners NamedBy")).should(Condition.exist);
+            $(withText("Listeners NamedBy")).should(visible);
         });
     }
 

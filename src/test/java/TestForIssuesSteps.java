@@ -18,7 +18,7 @@ public class TestForIssuesSteps {
         steps.resultsOfSearchRepository();
         steps.goToRepository(REPOSITORY);
         steps.goToIssues(ISSUES);
-        steps.goToIssueByNumber(ISSUE_NUMBER);
+        steps.checkIssueByNumber(ISSUE_NUMBER);
 
     }
 
